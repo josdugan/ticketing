@@ -1,11 +1,10 @@
 import express, { Request, Response } from 'express';
+import 'express-async-errors';
 import { body } from 'express-validator';
-import jwt from 'jsonwebtoken';
 import { BadRequestError } from '../errors/bad-request-error';
 import { validateRequest } from '../middlewares/validate-request';
 import { User } from '../models/user';
-
-const JWT_KEY = process.env.JWT_KEY;
+import { JWTService } from '../services/jwt';
 
 const router = express.Router();
 
@@ -34,16 +33,8 @@ router.post(
     });
     await user.save();
 
-    const userJwt = jwt.sign(
-      {
-        id: user.id,
-        email: user.email,
-      },
-      JWT_KEY!
-    );
-
     req.session = {
-      jwt: userJwt,
+      jwt: JWTService.generate(user),
     };
 
     res.status(201).send(user);
