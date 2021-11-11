@@ -12,7 +12,7 @@ const errorHandler = (
   }
 
   res.status(400).send({
-    errors: [{ message: 'Something went wron  g' }],
+    errors: [{ message: 'Something went wrong' }],
   });
 };
 

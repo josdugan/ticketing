@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
@@ -30,7 +31,7 @@ const start = async () => {
     await mongoose.connect(MONGO_DB);
     console.log('Connected to auth db');
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 
   app.listen(PORT, () => {
