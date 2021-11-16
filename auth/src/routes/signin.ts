@@ -7,6 +7,7 @@ import {
   BadRequestError,
   validateRequest,
   JWTService,
+  UserPayload,
 } from '@josdugantickets/common';
 
 const router = express.Router();
@@ -39,7 +40,7 @@ router.post(
     }
 
     req.session = {
-      jwt: JWTService.generate(existingUser),
+      jwt: JWTService.generate(existingUser as UserPayload),
     };
 
     res.status(200).send(existingUser);
