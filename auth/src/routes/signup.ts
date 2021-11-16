@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 import 'express-async-errors';
 import { body } from 'express-validator';
-import { BadRequestError } from '../errors/bad-request-error';
-import { validateRequest } from '../middlewares/validate-request';
 import { User } from '../models/user';
-import { JWTService } from '../services/jwt';
+import {
+  BadRequestError,
+  validateRequest,
+  JWTService,
+} from '@josdugantickets/common';
 
 const router = express.Router();
 
