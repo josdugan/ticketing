@@ -1,7 +1,6 @@
-import request from 'supertest';
+import { JWTService } from '@josdugantickets/common';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import { app } from '../app';
 
 let mongo: any;
 
@@ -22,28 +21,28 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  jest.setTimeout(10000);
+  jest.setTimeout(15000);
   await mongo.stop();
   await mongoose.connection.close();
 });
 
 declare global {
-  var signup: () => Promise<string[]>;
+  var signin: () => string[];
 }
 
-global.signup = async () => {
-  const email = 'test@example.com';
-  const password = 'password';
+global.signin = () => {
+  const payload = {
+    id: new mongoose.Types.ObjectId().toHexString(),
+    email: 'test@example.com',
+  };
 
-  const response = await request(app)
-    .post('/api/users/signup')
-    .send({
-      email,
-      password,
-    })
-    .expect(201);
+  const token = JWTService.generate(payload);
 
-  const cookie = response.get('Set-Cookie');
+  const session = { jwt: token };
 
-  return cookie;
+  const sessionJSON = JSON.stringify(session);
+
+  const base64 = Buffer.from(sessionJSON).toString('base64');
+
+  return [`express:sess=${base64}`];
 };
