@@ -2,3 +2,4 @@ node_modules
 infra/k8s/skaffold
 .next
 common/
+nats-test
