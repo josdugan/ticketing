@@ -1,0 +1,16 @@
+name: deploy-orders
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'orders/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd orders && docker build -t ${{ secrets.DOCKER_USERNAME }}/orders .
+      
