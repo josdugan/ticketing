@@ -38,7 +38,7 @@ const start = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to tickets db');
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 
   app.listen(PORT, () => {
