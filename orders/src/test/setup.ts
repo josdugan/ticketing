@@ -8,7 +8,7 @@ let mongo: any;
 
 beforeAll(async () => {
   process.env.JWT_KEY = 'secret';
-  mongo = await MongoMemoryServier.create();
+  mongo = await MongoMemoryServer.create();
   const mongoUri = mongo.getUri();
 
   await mongoose.connect(mongoUri);
