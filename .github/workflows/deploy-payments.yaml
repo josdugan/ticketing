@@ -1,0 +1,15 @@
+name: deploy-payments
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'payments/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd payments && docker build -t ${{ secrets.DOCKER_USERNAME }}/payments .
