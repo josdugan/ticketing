@@ -1,4 +1,3 @@
-import 'express-async-errors';
 import mongoose from 'mongoose';
 import { app } from './app';
 import { ExpirationCompleteListener } from './events/listeners/expiration-complete-listener';
@@ -10,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
-    throw new Error('JWT_KE Ymust be defined');
+    throw new Error('JWT_KEY must be defined');
   }
   if (!process.env.MONGO_URI) {
     throw new Error('MONGO_URI must be defined');
