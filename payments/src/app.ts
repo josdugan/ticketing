@@ -6,6 +6,7 @@ import {
   errorHandler,
   NotFoundError,
 } from '@josdugantickets/common';
+import { createChargeRouter } from './routes/new';
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(
   })
 );
 app.use(currentUser);
+
+app.use(createChargeRouter);
 
 app.all('*', () => {
   throw new NotFoundError();
