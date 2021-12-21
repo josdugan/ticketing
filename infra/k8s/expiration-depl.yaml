@@ -25,5 +25,5 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: REDIS_HOST
-              value: http://expiration-redis-srv:6379
+              value: expiration-redis-srv
                         
