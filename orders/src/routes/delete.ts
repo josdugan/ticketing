@@ -5,7 +5,7 @@ import {
 } from '@josdugantickets/common';
 import express, { Request, Response } from 'express';
 import { natsWrapper } from '../events/nats-wrapper';
-import { OrderCancelledPublisher } from '../events/order-cancelled-publisher';
+import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
 import { Order, OrderStatus } from '../models/order';
 
 const router = express.Router();

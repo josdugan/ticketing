@@ -7,7 +7,7 @@ import {
 import { Message } from 'node-nats-streaming';
 import { Order } from '../../models/order';
 import { natsWrapper } from '../nats-wrapper';
-import { OrderCancelledPublisher } from '../order-cancelled-publisher';
+import { OrderCancelledPublisher } from '../publishers/order-cancelled-publisher';
 import { queueGroupName } from './queue-group-name';
 
 class ExpirationCompleteListener extends Listener<ExpirationCompleteEvent> {
